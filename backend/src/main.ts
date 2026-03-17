@@ -335,7 +335,7 @@ async function bootstrap() {
 
   app.use(rateLimit({ 
     windowMs: 1 * 60 * 1000, 
-    max: 5, 
+    max: 150, 
     keyGenerator: (req: any) => {
       // ดึง IP จริงๆ ของลูกค้าจาก Header ที่ Cloud ส่งมาให้
       return req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'].split(',')[0] : req.ip;
