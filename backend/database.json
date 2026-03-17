@@ -1,0 +1,113 @@
+{
+  "users": [
+    {
+      "username": "1",
+      "password": "1",
+      "balance": 54,
+      "role": "USER",
+      "apiKeys": [
+        {
+          "key": "prw_pro_cib71ch2n",
+          "tier": "PRO",
+          "expireAt": "2026-03-08T04:25:23.406Z",
+          "usedQuota": 0
+        },
+        {
+          "key": "prw_business_yrgasrkxt",
+          "tier": "BUSINESS",
+          "expireAt": "2026-05-05T02:33:35.558Z",
+          "usedQuota": 0
+        },
+        {
+          "key": "prw_enterprise_year_vfitzwmvx",
+          "tier": "ENTERPRISE_YEAR",
+          "expireAt": "2027-03-06T02:33:16.081Z",
+          "usedQuota": 0
+        }
+      ],
+      "createdAt": "2026-03-06T01:45:23.553Z",
+      "walletPhone": "0949806495"
+    },
+    {
+      "username": "Porawat09",
+      "email": "ttaks123z@gmail.com",
+      "phone": "0949806495",
+      "password": "12345678Za",
+      "balance": 0,
+      "role": "ADMIN",
+      "apiKeys": [
+        {
+          "key": "prw_base_1wbkmmsgb",
+          "tier": "NONE",
+          "expireAt": "2099-01-31T17:00:00.000Z",
+          "usedQuota": 0
+        }
+      ],
+      "createdAt": "2026-03-06T02:24:39.198Z",
+      "isTwoFactorEnabled": true,
+      "twoFactorSecret": "GFDEKSLHNM7HSVDMFI4S662XKASGO5BIJVLSYOLVKMZTKV3XLVSA"
+    },
+    {
+      "username": "Porawat",
+      "email": "cosmicporawat@gmail.com",
+      "phone": "0949806495",
+      "password": "porawat111",
+      "walletPhone": "0893695831",
+      "isTwoFactorEnabled": true,
+      "twoFactorSecret": "HFNG22KJPVQTO4BKORHGOXSQKQSFIPCFFAUCQULQKAZFQ6RZKVPA",
+      "balance": 0,
+      "role": "ADMIN",
+      "apiKeys": [
+        {
+          "key": "prw_base_avso4vd2y",
+          "tier": "NONE",
+          "expireAt": "2099-01-31T17:00:00.000Z",
+          "usedQuota": 0
+        }
+      ],
+      "createdAt": "2026-03-06T06:26:35.749Z"
+    }
+  ],
+  "transactions": [
+    {
+      "id": 1772771227535,
+      "username": "1",
+      "type": "BUY_PRO",
+      "amount": -79,
+      "status": "SUCCESS",
+      "date": "2026-03-06T04:27:07.535Z"
+    },
+    {
+      "id": 1772771123414,
+      "username": "1",
+      "type": "BUY_PRO",
+      "amount": -79,
+      "status": "SUCCESS",
+      "date": "2026-03-06T04:25:23.414Z"
+    },
+    {
+      "id": 1772764419443,
+      "username": "1",
+      "type": "BUY_BUSINESS",
+      "amount": -399,
+      "status": "SUCCESS",
+      "date": "2026-03-06T02:33:39.443Z"
+    },
+    {
+      "id": 1772764415558,
+      "username": "1",
+      "type": "BUY_BUSINESS",
+      "amount": -399,
+      "status": "SUCCESS",
+      "date": "2026-03-06T02:33:35.558Z"
+    },
+    {
+      "id": 1772764396088,
+      "username": "1",
+      "type": "BUY_ENTERPRISE_YEAR",
+      "amount": -8990,
+      "status": "SUCCESS",
+      "date": "2026-03-06T02:33:16.088Z"
+    }
+  ]
+}
