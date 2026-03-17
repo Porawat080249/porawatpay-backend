@@ -329,11 +329,19 @@ class AppModule {}
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-  app.getHttpAdapter().getInstance().set('trust proxy', 1);
+    app.getHttpAdapter().getInstance().set('trust proxy', true);
   app.use(json({ limit: '5mb' }));
   app.use(urlencoded({ extended: true, limit: '5mb' }));
 
-  app.use(rateLimit({ windowMs: 1 * 60 * 1000, max: 5, message: { success: false, message: 'คุณเรียกใช้งาน API ถี่เกินไป กรุณารอสักครู่' } }));
+  app.use(rateLimit({ 
+    windowMs: 1 * 60 * 1000, 
+    max: 5, 
+    keyGenerator: (req: any) => {
+      // ดึง IP จริงๆ ของลูกค้าจาก Header ที่ Cloud ส่งมาให้
+      return req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'].split(',')[0] : req.ip;
+    },
+    message: { success: false, message: 'คุณเรียกใช้งาน API ถี่เกินไป กรุณารอสักครู่' } 
+  }));
 
   const dbService = app.get(DbService);
   app.useGlobalInterceptors(new ApiLoggingInterceptor(dbService));
