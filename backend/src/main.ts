@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { Injectable, Module, Controller, Post, Body, Get, Param, Put, Headers, HttpException, HttpStatus, CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
+import { Injectable, Module, Controller, Post, Body, Get, Param, Put, Headers, UnauthorizedException, HttpException, HttpStatus, CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
 import axios from 'axios';
 import * as https from 'https';
 import * as bcrypt from 'bcryptjs';
@@ -47,7 +47,7 @@ function generateApiKey(tier: string) {
 class AppController {
   private readonly adminPhone = '0949806495'; // 🟢 เบอร์แอดมินสำหรับรับเงินเข้าระบบ
 
-  constructor(private db: DbService) {}
+  constructor(private readonly dbService: DbService) {} 
 
   @Post('auth/register')
   async register(@Body() body: any) {
