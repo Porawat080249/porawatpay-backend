@@ -333,7 +333,7 @@ async function bootstrap() {
   app.use(json({ limit: '5mb' }));
   app.use(urlencoded({ extended: true, limit: '5mb' }));
 
-  app.use(rateLimit({ windowMs: 1 * 60 * 1000, max: 150, message: { success: false, message: 'คุณเรียกใช้งาน API ถี่เกินไป กรุณารอสักครู่' } }));
+  app.use(rateLimit({ windowMs: 1 * 60 * 1000, max: 5, message: { success: false, message: 'คุณเรียกใช้งาน API ถี่เกินไป กรุณารอสักครู่' } }));
 
   const dbService = app.get(DbService);
   app.useGlobalInterceptors(new ApiLoggingInterceptor(dbService));
