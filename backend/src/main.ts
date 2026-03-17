@@ -13,7 +13,7 @@ const speakeasy = require('speakeasy');
 import * as qrcode from 'qrcode';
 import { DbService } from './db.service';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'PORAWAT_PAY_ENTERPRISE_SECRET_2026';
+const JWT_SECRET = process.env.JWT_SECRET || 'Porawat_Pay_Private_Key_2026!';
 
 class TaskQueue {
   private queue: (() => Promise<void>)[] = [];
