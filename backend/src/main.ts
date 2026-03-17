@@ -115,11 +115,32 @@ class AppController {
   }
 
   @Get('user/:username')
-  async getUser(@Param('username') username: string) {
-    const users = await this.db.query('SELECT * FROM "User" WHERE username = $1', [username]);
-    if(users.length === 0) return {};
-    const apiKeys = await this.db.query('SELECT * FROM "ApiKey" WHERE "userId" = $1 ORDER BY "expireAt" DESC', [users[0].id]);
-    return { ...users[0], apiKeys };
+  async getUserProfile(
+    @Param('username') username: string,
+    @Headers('authorization') authHeader: string // 👈 สั่งให้รอรับบัตรจาก Header
+  ) {
+    // 1. ตรวจว่ามีคนยื่นบัตรมาไหม?
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      throw new UnauthorizedException('หยุดนะ! คุณไม่มีบัตรอนุญาต (Missing Token)');
+    }
+
+    // 2. ดึงบัตรออกมาและตรวจสอบลายเซ็น
+    const token = authHeader.split(' ')[1];
+    try {
+      const secret = process.env.JWT_SECRET || 'PORAWAT_PAY_ENTERPRISE_SECRET_2026';
+      const decoded = jwt.verify(token, secret); 
+      
+      // 3. (ทางเลือก) เช็กว่าบัตรเป็นของคนๆ เดียวกับที่ขอข้อมูลไหม
+      // if (decoded.username !== username && decoded.role !== 'ADMIN') {
+      //   throw new UnauthorizedException('คุณไม่มีสิทธิ์ดูข้อมูลของคนอื่น!');
+      // }
+
+    } catch (err) {
+      throw new UnauthorizedException('บัตรปลอม หรือ บัตรหมดอายุ! (Invalid Token)');
+    }
+
+    // ถ้าผ่านด่านมาได้ ค่อยดึงข้อมูลจาก Database ส่งกลับไป
+    return this.dbService.query('SELECT * FROM users WHERE username = ...');
   }
 
   @Put('user/:username/wallet')
